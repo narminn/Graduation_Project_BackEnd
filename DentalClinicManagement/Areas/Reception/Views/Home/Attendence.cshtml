@@ -1,0 +1,174 @@
+﻿@model DentalClinicManagement.ViewModel.AttendModel
+@{
+    ViewBag.Title = "Attendence";
+    Layout = "~/Areas/Reception/Views/Shared/Layout.cshtml";
+}
+
+<section id="profile">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 text-center">
+                <div class="profile_img">
+
+                    <img src="@Model._stuff.stuff_photo" class="img-fluid">
+                </div>
+                <div class="user_about">
+                    <h5 style="color:white">@Model._stuff.stuff_fullname</h5>
+                    <span style="color:white">@Model._stuff.stuff_about</span>
+                </div>
+                <div class="work_for">
+                    <p>
+                        <b>Start to work :</b>
+                        <span>@Model._stuff.stuff_start_date.ToString().AsDateTime().ToShortDateString()</span>
+                    </p>
+                </div>
+                <hr>
+            </div>
+
+            <div class="col-md-9">
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <h3>@DateTime.Now.ToShortDateString()</h3>
+                        <i class="fas fa-tasks"></i> Doctors Attendence
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Doctor Id</th>
+                                        <th>Doctor Name</th>
+                                        <th>Doctor status</th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model._doctors)
+                                    {
+                                        <tr>
+                                            <td><input type="number" class="doctorid" value="@item.id" disabled="disabled" style="width:60px;background-color:lightblue;color:black;border:none" /></td>
+                                            <td>@item.doctor_fullname</td>
+                                            <td><input style="width:20px;height:20px;background-color:lightblue" type="checkbox" class="check" /></td>
+
+                                        </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Submit" class="btn btn-default btnclick" style="background-color:lightblue" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 text-center">
+
+            </div>
+            <div class="col-md-9">
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <i class="fas fa-tasks"></i> Stuffs Attendence
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Stuff Id</th>
+                                        <th>Stuff Name</th>
+                                        <th>Stuff status</th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model._stuffs)
+                                    {
+                                        <tr>
+                                            <td><input type="number" class="stuffid" value="@item.id" disabled="disabled" style="width:60px;background-color:lightblue;color:black;border:none" /></td>
+                                            <td>@item.stuff_fullname</td>
+                                            <td><input style="width:20px;height:20px;" type="checkbox" class="check1" /></td>
+
+                                        </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Submit" class="btn btn-default btnclick" style="background-color:lightblue" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous">
+
+</script>
+<script>
+    var doctorArray = [];
+    var checkArray = [];
+
+    $(document).ready(function () {
+        $(".check").val(0)
+        $(".check").click(function () {
+            if ($(this).val() == 0) {
+                $(this).val(1)
+            } else {
+                $(this).val(0)
+            }
+            console.log($(this).val())
+
+        })
+
+        $(".check").each(function () {
+            checkArray.push($(this).val())
+        })
+        $(".check").change(function () {
+            checkArray = [];
+            $(".check").each(function () {
+                checkArray.push($(this).val())
+            })
+        })
+
+
+        $(".doctorid").each(function () {
+            doctorArray.push($(this).val())
+        })
+        $(".doctorid").change(function () {
+            doctorArray = [];
+            $(".doctorid").each(function () {
+                doctorArray.push($(this).val())
+            })
+        })
+
+
+        $(".btnclick").click(function () {
+            console.log(checkArray, doctorArray)
+            $.ajax({
+                type: "POST",
+                data: {
+                    checkArray: checkArray,
+                    doctorArray: doctorArray
+                },
+
+                url: "http://localhost:50242/Reception/Home/CreateAjax",
+                async: false,
+                success: function (msg) {
+                    alert("ishleyir")
+                }
+            });
+        })
+    })
+</script>
+

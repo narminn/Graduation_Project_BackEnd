@@ -1,0 +1,131 @@
+﻿@model DentalClinicManagement.Models.Stuff
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/ManagementAdmin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Stuff</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.stuff_fullname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stuff_fullname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.stuff_about)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stuff_about)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.stuff_photo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stuff_photo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.stuff_phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stuff_phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.stuff_email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stuff_email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.stuff_address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stuff_address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.stuff_salary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stuff_salary)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.stuff_birthday)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stuff_birthday)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.stuff_start_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stuff_start_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.stuff_start_time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stuff_start_time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.stuff_finish_time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stuff_finish_time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.stuff_password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stuff_password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gender.gender_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gender.gender_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MarrigeStatu.status_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MarrigeStatu.status_name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

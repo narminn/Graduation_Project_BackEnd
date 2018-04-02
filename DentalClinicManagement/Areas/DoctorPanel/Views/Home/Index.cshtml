@@ -1,0 +1,196 @@
+﻿@model DentalClinicManagement.ViewModel.UserModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/DoctorPanel/Views/Shared/_Layout.cshtml";
+}
+
+
+
+    <section id="profile">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 text-center">
+                    <div class="profile_img">
+
+                        <img src="@Model._doctor.doctor_photo" class="img-fluid">
+                    </div>
+                    <div class="user_about">
+                        <h5 style="color:white">@Model._doctor.doctor_fullname</h5>
+                        <span style="color:white">@Model._doctor.Department.department_name</span>
+                    </div>
+                    <div class="work_for">
+                        <p>
+                            <b>Start to work</b>
+                            <span>@Model._doctor.doctor_start_date.ToString().AsDateTime().ToShortDateString()</span>
+                        </p>
+                    </div>
+                    <div class="work_for">
+                        @{
+            foreach (var item in Model._doctors)
+            {
+
+                if (item.doctor_date_of_birth.Value.Day == DateTime.Now.Day && item.doctor_date_of_birth.Value.Month == DateTime.Now.Month)
+                {
+                    <p>Today is @item.doctor_fullname 's birthday</p>
+
+}
+}
+                        }
+
+                    </div>
+                    <hr>
+                    
+                   
+                </div>
+                <div class="col-md-9">
+                    <div class="contain">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="item_title">
+                                            <h5> <i class="fas fa-pencil-alt"></i>  Personal Details</h5>
+                                        </div>
+                                        <div class="item_contain">
+                                            <table class="table table-light margin-bottom-0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td> <span class="primry-link">Full Name</span> </td>
+                                                        <td>@Model._doctor.doctor_fullname</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="primry-link">DOB</span></td>
+                                                        <td>@Model._doctor.doctor_date_of_birth.ToString().AsDateTime().ToShortDateString()</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="primry-link">Gender</span></td>
+                                                        <td>@Model._doctor.Gender.gender_name</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="primry-link">Marriage Status</span></td>
+                                                        <td>@Model._doctor.MarrigeStatu.status_name</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="primry-link">Email</span></td>
+                                                        <td>@Model._doctor.doctor_email</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="primry-link">Phone</span></td>
+                                                        <td>@Model._doctor.doctor_phone</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td><span class="primry-link">Local Address</span></td>
+                                                        <td>@Model._doctor.doctor_address</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="item_title">
+                                            <h5><i class="fas fa-briefcase"></i>Company Details</h5>
+                                        </div>
+                                        <div class="item_contain">
+                                            <table class="table table-light margin-bottom-0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td> <span class="primry-link">Employee ID</span> </td>
+                                                        <td>@Model._doctor.id</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td> <span class="primry-link">Department</span> </td>
+                                                        <td>@Model._doctor.Department.department_name</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td> <span class="primry-link">Date of Joining</span> </td>
+                                                        <td>@Model._doctor.doctor_start_date.ToString().AsDateTime().ToShortDateString()</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td> <span class="primry-link">Working times</span> </td>
+                                                        <td>@Model._doctor.doctor_start_time.ToString().AsDateTime().ToShortTimeString() - @Model._doctor.doctor_finish_time.ToString().AsDateTime().ToShortTimeString()</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td> <span class="primry-link">Salary ($)</span> </td>
+                                                        <td>
+                                                            <p>
+                                                              @Model._doctor.doctor_salary
+                                                            </p>
+                                                            
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="item_title">
+                                            <h5><i class="fas fa-bullhorn"></i>Notice Board</h5>
+                                        </div>
+                                        <div class="item_contain scrool_contain">
+                                            @foreach (var item in Model._note)
+    {
+                                        <div class="item">
+                                            <div class="date text-center">
+                                               
+                                                <small>@item.note_date.ToString().AsDateTime().ToShortDateString()</small>
+                                            </div>
+                                            <a href="#">@item.note_title</a>
+                                            <p>@item.note_content</p>
+                                        </div>
+}
+                                            
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="item_title">
+                                            <h5><i class="far fa-paper-plane"></i> Holidays</h5>
+                                        </div>
+                                        <div class="item_contain scrool_contain">
+                                            @foreach (var item in Model._holiday)
+    {
+                                        <div class="alert-blocks alert-danger ">
+                                            <span>@item.holiday_name</span>
+                                            <small class="float-right"><em>@item.holiday_date.ToString().AsDateTime().ToShortDateString()</em></small>
+                                        </div>
+}
+                                         
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="item_title">
+                                            <h5><i class="fas fa-trophy"></i>Awards</h5>
+                                        </div>
+                                        <div class="item_contain scrool_contain awards">
+                                            @foreach (var item in Model._award)
+    {
+                                        <div class="alert-blocks">
+                                            <b>@item.award_name </b>
+                                            <small class="award-name">@item.award_price AZN</small>
+                                            <small class="float-right"><em>@item.award_date.ToString().AsDateTime().ToShortDateString()</em></small>
+                                        </div>
+}
+                                           
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+  
+

@@ -1,0 +1,29 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <link rel="stylesheet" href="~/UserAssets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/UserAssets/css/style.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+</head>
+<body>
+
+    <div class="login">
+        <h1>Login</h1>
+        <form method="post" action="~/Reception/Home/Login">
+            <input type="text" name="email" placeholder="Email" required="required" />
+            <input type="password" name="password" placeholder="Password" required="required" />
+            <button type="submit" class="btn btn-primary btn-block btn-large">Log In <i class="fas fa-sign-in-alt"></i></button>
+        </form>
+        <br>
+    </div>
+
+    <script src="~/UserAssets/js/jquery.js"></script>
+    <script src="~/UserAssets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

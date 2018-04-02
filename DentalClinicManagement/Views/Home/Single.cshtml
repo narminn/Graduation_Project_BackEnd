@@ -1,0 +1,83 @@
+﻿@model DentalClinicManagement.ViewModel.SingleModel
+@{
+    ViewBag.Title = "Single";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section id="singleMain">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                <div class="singleNews">
+                    <div class="singleNewsTitle">
+                        <h1>@Model._single_news.news_title</h1>
+                    </div>
+                    <div class="post">
+                        <p>BY Admin</p>
+                        <div class="calendar">
+                            <i class="far fa-calendar-alt"></i>
+                            <p>@Model._single_news.news_date.ToString().AsDateTime().ToShortDateString()</p>
+                        </div>
+                        <div class="folder">
+                            <i class="far fa-folder"></i>
+                            <p>NEWS</p>
+                        </div>
+                        <div class="comment">
+                            <p>1</p>
+                            <i class="far fa-comment"></i>
+                        </div>
+                    </div>
+                    <div class="newsImage">
+                        <img src="@Model._single_news.news_photo" alt="">
+                    </div>
+                    <div class="newsContent">
+                        <p>
+                            @Model._single_news.news_content
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <div class="singleNewsRight">
+
+                    @*<div class="input-group">
+                        <input class="form-control" type="text" id="search" placeholder="Search">
+                        <button class="btn btn-info" type="button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>*@
+
+                    <div class="recentPosts">
+                        <div class="title">
+                            <h2>Recent Posts</h2>
+                        </div>
+                        <div class="line"></div>
+                        <div class="content">
+                            @foreach (var item in Model._all_news)
+    {
+                        <a href="/Home/Single/@item.id"><p>@item.news_title</p></a>
+}
+                        </div>
+                    </div>
+                    <div class="recentPosts">
+                        <div class="title">
+                            <h2>Services</h2>
+                        </div>
+                        <div class="line"></div>
+                        <div class="content">
+                            @foreach (var item in Model._service)
+    {
+                        <a href="/Home/Service/@item.id"><h3>@item.services_name</h3></a>
+                        <p>@item.services_about</p>
+}
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+

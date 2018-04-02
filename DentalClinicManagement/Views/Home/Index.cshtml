@@ -1,0 +1,189 @@
+﻿@model DentalClinicManagement.ViewModel.IndexModel
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+
+    <section id="homeTitle" style="background-image:url(../Assets/images/slide2.jpg)">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <h1>
+                        @Model._dental.clinic_slogan
+                    </h1>
+                    <p>Dr. Hendra is an active member of the Academy of  General Dentistry and strives to stay up to date with the latest  in techniques and technology in the dental profession.</p>
+                    <div class="btnContact">
+                        <a href="/Home/Contact"><p>Contact Us</p></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="welcome">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="welcomeText">
+                        <h5>WELCOME TO DENTAL CARE!</h5>
+                        <h2>Welcome to a Family Dental Clinic</h2>
+                        <p>
+                            @Model._dental.clinic_about
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="appointment1">
+                        <div class="first">Make an Appointment Today!</div>
+                        <div class="second">
+                            <div class="contactForm">
+                                <form class="form-horizontal" action="/Home/Index" method="post">
+                                    <div class="form-group Form">
+                                        <input type="text" class="form-control contactInput" name="name" placeholder="Your Name">
+                                    </div>
+                                    <div class="form-group Form">
+                                        <input type="email" class="form-control contactInput" name="email" placeholder="Your Email">
+                                    </div>
+                                    <div class="form-group Form">
+                                        <input type="text" class="form-control contactInput" name="phone" placeholder="Phone Number">
+                                    </div>
+                                    <div class="form-group Form"> 
+                                            <select class="form-control"  name="doctor_id">
+
+                                                @foreach (var item in Model._doctors)
+                                                 {
+
+                                                    <option value="@item.id">@item.doctor_fullname</option>
+                                                }
+                                            </select>
+                                    </div>
+                                    <div class="form-group Form">
+                                        <input type="date" class="form-control contactInputLast" name="date" placeholder="Text">
+                                    </div>
+                                    <div class="form-group Form">
+                                        <input type="time" class="form-control contactInputLast" name="time" placeholder="Text">
+                                    </div>
+                                    <div class="form-group">
+                                        <button class="btn btn-info btn-lg submit">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="services">
+        <div class="textServices">
+            <h5>SERVICES WE PROVIDE</h5>
+            <h3>Our Clinic Services</h3>
+        </div>
+        <div class="container">
+            <div class="row">
+                @foreach (var item in Model._service)
+    {
+            <div class="col-md-3  col-lg-3  col-sm-6 col-xs-12">
+                <div class="serviceImg text-center">
+                    <img src="@item.services_photo" alt=""style="width:100%;height:200px" >
+                </div>
+                <div class="serviceContent text-center">
+                    <a href="/Home/Service/@item.id"><h4>@item.services_name</h4></a>
+                    <p>
+                        @item.services_about
+                    </p>
+                </div>
+            </div>
+}
+               
+            </div>
+        </div>
+    </section>
+    <section id="open_hours">
+        <div class="parallax" style="background-image: url(../Assets/images/about.jpg)">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-offset-6 col-lg-6 col-md-offset-6 col-md-6 col-sm-12 col-xs-12 col">
+                        <div class="hours" style="background-image: url(../Assets/images/bg-6s.jpg)">
+                            <div class="title">
+                                <h5>we're</h5>
+                                <h2>Open Hours</h2>
+                                <p>
+                                    If you feel tired and stressed after a
+                                    working day, we are happy to give you an enjoyabl
+                                    healthy solution to find your balance again.
+                                </p>
+                                <ul>
+                                    @foreach (var item in Model._open)
+    {
+                                <li><i class="far fa-dot-circle" style="float:left"></i><p>@item.schedule: @item.hours</p></li>
+}
+                                </ul>
+                            </div>
+                            <div class="overlay"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="allNews">
+        <div class="container">
+            <div class="row">
+                <p style="text-align:center;font-size:45px;">Last News</p>
+                @foreach (var item in Model._news.OrderByDescending(o=>o.news_date))
+    {
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="newsPhoto">
+                    <img src="@item.news_photo" alt="" style="width:100%;height:200px">
+                </div>
+                <div class="newsContent">
+                    <div class="title">
+                        <a href="/Home/Single"><p>@item.news_title</p></a>
+                    </div>
+                    <div class="line">
+                        <div class="smalline"></div>
+                    </div>
+                    <div class="date">
+                        <div class="calendar">
+                            <i class="fas fa-calendar-alt"></i>
+                            <p>@item.news_date.ToString().AsDateTime().ToShortDateString()</p>
+                        </div>
+                        <div class="folder">
+                            <i class="far fa-folder"></i>
+                            <p>NEWS</p>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <p>@item.news_content.Substring(0,150)...</p>
+                    </div>
+                    <div class="readMore">
+                        <a href="/Home/Single"><p>READ MORE</p></a>
+                    </div>
+                </div>
+            </div>
+}
+                
+
+
+
+            </div>
+        </div>
+    </section>
+    <section id="make_appointment">
+        <div class="parallax" style="background-image:url(../Assets/img/about.jpg)">
+            <div class="overlay">
+                <div class="container">
+                    <div class="row">
+                        <h4>Make an Appointment for Your Smile!</h4>
+                        <p>1 800 345 69 96</p>
+                        <div class="button">
+                            <a href="/Home/Booking"><p>MAKE AN APPOINTMENT</p></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+   

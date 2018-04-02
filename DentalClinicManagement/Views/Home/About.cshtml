@@ -1,0 +1,171 @@
+﻿@model DentalClinicManagement.ViewModel.ClinicModel
+@{
+    ViewBag.Title = "About";
+}
+
+    <section id="about">
+        <div class="parallaxAbout" style="background-image: url(../Assets/img/about.jpg)">
+            <div class="overlay">
+                <div class="container">
+                    <div class="row">
+                        <div class="title">
+                            <h1>About</h1>
+                        </div>
+                        <div class="content">
+                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="history" style="padding:50px">
+        <div class="container">
+            <div class="row">
+     
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="historyImage">
+                    <img src="@Model._photo.photo_file" alt="">
+                </div>
+            </div>
+
+
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="historyContent">
+                        <p>@Model._clinic.clinic_open_date.ToString().AsDateTime().ToShortDateString()</p>
+                        <span>
+
+                            @Model._clinic.clinic_history
+                        </span>
+                        <p class="ceo">@Model._clinic.clinic_ceo_name - CEO @Model._clinic.clinic_name</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="customer_quotes">
+        <div class="parallaxCustomer" style="background-image: url(../Assets/img/doctor.jpg)">
+            <div class="overlay">
+                <div class="container">
+
+                    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                        <!-- Indicators -->
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="contentCustomer">
+                                            <p>"Lorem ut perspiciatis totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto."</p>
+                                        </div>
+                                        <div class="customer">
+                                            <div class="customerImage">
+                                                <img src="http://huntu.themesawesome.com/wp-content/uploads/sites/103/2017/12/author1-60x60.jpg" alt="">
+
+                                            </div>
+                                            <div class="customerName">
+                                                <p>Jennifer Aster</p>
+                                                <p>Customer</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @foreach (var item in Model._quotes)
+    {
+                        <div class="item">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="contentCustomer">
+                                        <p>"@item.customer_quote_text"</p>
+                                    </div>
+                                    <div class="customer">
+                                        <div class="customerImage">
+                                            <img src="http://huntu.themesawesome.com/wp-content/uploads/sites/103/2017/12/author1-60x60.jpg" alt="">
+
+                                        </div>
+                                        <div class="customerName">
+                                            <p>@item.customer_name</p>
+                                            <p>Customer</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+}
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="supplier">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12 supplier_text">
+                    <p>Pharmacy Suppliers</p>
+                    <span>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantiumo</span>
+                </div>
+
+                @foreach (var item in Model._supplier)
+    {
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                <img src="@item.supplier_photo" alt="">
+            </div>
+}
+               
+
+            </div>
+        </div>
+    </section>
+    <section id="team">
+        <div class="container">
+            <div class="row">
+                <div class="team_title">
+                    <p>OUR TEAM</p>
+                    <h1>Meet Our Experts</h1>
+                </div>
+                <div class="team_images">
+                    @foreach (var item in Model._doctors)
+    {
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="expert">
+                        <img src="@item.doctor_photo" alt="" style="width:100%;height:300px">
+                        <div class="overlay">
+                            <a href="/Home/Doctor/@item.id"><p>Dr. @item.doctor_fullname</p></a>
+                            <h4>@item.Department.department_name</h4>
+                            <div class="icons">
+                                <i class="fab fa-facebook-f"></i>
+                                <i class="fab fa-twitter"></i>
+                                <i class="fab fa-google-plus-g"></i>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+}
+                   
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="make_appointment">
+        <div class="parallax" style="background-image:url(../Assets/img/about.jpg)">
+            <div class="overlay">
+                <div class="container">
+                    <div class="row">
+                        <h4>Make an Appointment for Your Smile!</h4>
+                        <p>1 800 345 69 96</p>
+                        <div class="button">
+                            <a href="/Home/Booking"><p>MAKE AN APPOINTMENT</p></a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+

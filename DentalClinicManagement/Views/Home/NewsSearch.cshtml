@@ -1,0 +1,58 @@
+﻿@model IEnumerable<DentalClinicManagement.Models.News>
+@{
+    ViewBag.Title = "NewsSearch";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section id="newsTitle">
+    <div class="parallax" style="background-image: url(../Assets/img/tools-bg.jpg)">
+        <div class="overlay">
+            <div class="container">
+                <div class="row">
+                    <div class="title">
+                        <h1>NEWS</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="allNews">
+    <div class="container">
+        <div class="row">
+            @foreach (DentalClinicManagement.Models.News item in Model)
+            {
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="padding-bottom:20px">
+                    <div class="newsPhoto">
+                        <img src="@item.news_photo" alt="" style="height:200px;">
+                    </div>
+                    <div class="newsContent">
+                        <div class="title">
+                            <a href="/Home/Single"><p>@item.news_title</p></a>
+                        </div>
+                        <div class="line"></div>
+                        <div class="date">
+                            <div class="calendar">
+                                <i class="fas fa-calendar-alt"></i>
+                                <p>@item.news_date</p>
+                            </div>
+                            <div class="folder">
+                                <i class="far fa-folder"></i>
+                                <p>NEWS</p>
+                            </div>
+                        </div>
+                        <div class="content">
+                            <p>@item.news_content.Substring(0, 200)</p>
+                        </div>
+                        <div class="readMore">
+                            <a href="/Home/Single"><p>READ MORE</p></a>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</section>
+

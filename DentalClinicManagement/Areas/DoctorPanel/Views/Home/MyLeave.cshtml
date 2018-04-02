@@ -1,0 +1,65 @@
+﻿@model DentalClinicManagement.ViewModel.DoctorLeaveModel
+@{
+    ViewBag.Title = "Leave";
+    Layout = "~/Areas/DoctorPanel/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<section id="profile">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 text-center">
+                <div class="profile_img">
+
+                    <img src="@Model._doctor.doctor_photo" class="img-fluid">
+                </div>
+                <div class="user_about">
+                    <h5>@Model._doctor.doctor_fullname</h5>
+                    <span>@Model._doctor.Department.department_name</span>
+                </div>
+                <div class="work_for">
+                    <p>
+                        <b>Start to work</b>
+                        <span>@Model._doctor.doctor_start_date.ToString().AsDateTime().ToShortDateString()</span>
+                    </p>
+                </div>
+
+                <hr>
+            </div>
+            <div class="col-md-9">
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <i class="fas fa-tasks"></i> My Leave Applications
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        
+                                        <th>Date</th>
+                                        <th>Reason</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model._leave)
+    {
+                                <tr>
+                                    <td>@item.leave_date.ToString().AsDateTime().ToShortDateString()</td>
+                                    <td>@item.leave_reason</td>
+
+                                </tr>
+}
+                                    
+                                  
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

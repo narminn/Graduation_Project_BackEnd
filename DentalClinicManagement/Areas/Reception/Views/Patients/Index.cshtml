@@ -1,0 +1,87 @@
+﻿@model IEnumerable<DentalClinicManagement.Models.Patient>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Reception/Views/Shared/Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-5">
+
+            <p>
+                @Html.ActionLink("Create New", "Create")
+            </p>
+        </div>
+        <div class="col-md-12 col-sm-12">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="background-color:white">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.patient_fullname)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.patient_phone)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.patient_address)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.patient_email)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.patient_payment)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.date)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Gender.gender_name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MarrigeStatu.status_name)
+                        </th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.patient_fullname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.patient_phone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.patient_address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.patient_email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.patient_payment)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Gender.gender_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MarrigeStatu.status_name)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                    </td>
+                </tr>
+    }
+
+            </table>
+            </div>
+        </div>
+    </div>

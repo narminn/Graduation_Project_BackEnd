@@ -1,0 +1,105 @@
+﻿@model DentalClinicManagement.ViewModel.BlogModel
+@{
+    ViewBag.Title = "Blog";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section id="newsTitle">
+    <div class="parallax" style="background-image: url(../Assets/img/tools-bg.jpg)">
+        <div class="overlay">
+            <div class="container">
+                <div class="row">
+                    <div class="title">
+                        <h1>NEWS</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="allNews">
+    <div class="container">
+        <div class="row">
+            <div class="input-group">
+                <input class="form-control" type="text" id="search" placeholder="Search" style="margin-left:10px;margin-bottom:50px">
+                   
+            </div>
+            @foreach (var item in Model._news.OrderByDescending(x=>x.news_date))
+            {
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="padding-bottom:20px">
+                    <div class="newsPhoto">
+                        <img src="@item.news_photo" alt="" style="height:200px;">
+                    </div>
+                    <div class="newsContent">
+                        <div class="title">
+                            <a href="/Home/Single/@item.id"><p>@item.news_title</p></a>
+                        </div>
+                        <div class="line"></div>
+                        <div class="date">
+                            <div class="calendar">
+                                <i class="fas fa-calendar-alt"></i>
+                                <p>@item.news_date.ToString().AsDateTime().ToShortDateString()</p>
+                            </div>
+                            <div class="folder">
+                                <i class="far fa-folder"></i>
+                                <p>NEWS</p>
+                            </div>
+                        </div>
+                        <div class="content">
+                            <p>@item.news_content.Substring(0, 200)</p>
+                        </div>
+                        <div class="readMore">
+                            <a href="/Home/Single/@item.id"><p>READ MORE</p></a>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</section>
+<section id="make_appointment">
+    <div class="parallax" style="background-image:url(../Assets/img/about.jpg)">
+        <div class="overlay">
+            <div class="container">
+                <div class="row">
+                    <h4>Make an Appointment for Your Smile!</h4>
+                    <p>1 800 345 69 96</p>
+                    <div class="button">
+                        <a href="/Home/Appointment"><p>MAKE AN APPOINTMENT</p></a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="http://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous">
+
+</script>
+
+
+
+    <script>
+        $(document).ready(function (e) {
+                var x;
+                $("#search").keyup(function (e) {
+                x = $("#search").val();
+                console.log(x);
+                    $.ajax({
+                        type: "Get",
+                        url: "http://localhost:50242/Home/NewsSearch?search="+x,
+                        contentType: "Html",
+                        success: function (response) {
+                            $("body").html(response);
+                            }
+                            })
+                                    })
+                                })
+</script>
+
+

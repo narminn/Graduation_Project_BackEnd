@@ -1,0 +1,89 @@
+﻿@model IEnumerable<DentalClinicManagement.Models.Dental_clinic_details>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/WebAdmin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>DCD</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="col-md-12 col-sm-12">
+    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>
+                    Clinic Name
+                </th>
+                <th>
+                    Clinic About
+                </th>
+                <th>
+                    Clinic Slogan
+                </th>
+                <th>
+                    Clinic Phone
+                </th>
+                <th>
+                    Clinic Email
+                </th>
+                <th>
+                    Clinic Address
+                </th>
+                <th>
+                    Clinic History
+                </th>
+                <th>
+                    Clinic Ceo Name
+                </th>
+                <th>
+                    Clinic Open Date
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.clinic_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.clinic_about)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.clinic_slogan)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.clinic_phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.clinic_email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.clinic_address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.clinic_history)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.clinic_ceo_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.clinic_open_date)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                </td>
+            </tr>
+        }
+
+    </table>
+         </div>
+    </div>
+</div>
